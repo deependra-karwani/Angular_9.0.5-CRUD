@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ToastService } from '../toast.service';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnDestroy {
 	constructor(private toast: ToastService, private regex: RegExService, private http: HttpService, private flag: FlagService, private r: Router) {}
 
 	name;
@@ -26,8 +26,8 @@ export class RegisterComponent {
 
 	registerObserver: Subscription;
 
-	handleSubmit(e:Event) {
-		e.preventDefault();
+	handleSubmit(/*e:Event*/) {
+		// e.preventDefault();
 		let {
 			regex: { isValidName, isValidUsername, isValidEmail, isValidMobile, isValidPassword },
 			toast: { warn, err, success },

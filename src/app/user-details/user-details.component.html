@@ -1,1 +1,66 @@
-<p>user-details works!</p>
+<div class="row" style="margin-left: 0; margin-right: 0">
+	<div class="col-md-7 offset-md-2 col-lg-8 offset-lg-2 col-xs-12">
+		<div class="card" style="margin-top: '10%'">
+			<div class="card-body">
+				<form class="form" (ngSubmit)="handleSubmit()">
+					<div class="row" style="margin-left: 0; margin-right: 0">
+						<div class="col">
+							<div class="form-group">
+								<input class="form-control" type="file" style="display: 'none'" #imgInputRef (change)="handleFile($event)" />
+								<img class="{{profPic ? 'rounded-circle' : 'rounded' + ' img-fluid'}}" (click)="imgInputRef.click()" src="{{profPic || '../assets/noImage.png'}}" style="cursor: 'pointer'" />
+							</div>
+						</div>
+
+						<div class="col" style="margin-left: '10%'; padding-top: '10%'">
+							<div class="form-group">
+								<input class="form-control" [(ngModel)]="name" name="name" type="text" placeholder="Name" />
+							</div>
+							
+							<div class="form-group">
+								<input class="form-control" [(ngModel)]="username" name="username" type="text" placeholder="Username" />
+							</div>
+							
+							<div class="form-group">
+								<input class="form-control" [(ngModel)]="email" name="email" type="email" placeholder="Email" />
+							</div>
+
+							<div class="form-group">
+								<input class="form-control" [(ngModel)]="mobile" name="mobile" type="text" placeholder="Mobile Number" />
+							</div>
+							
+							<div class="form-group">
+								<button class="btn btn-primary" type="submit" style="width: '100%'">
+									Save Changes
+								</button>
+							</div>
+
+							<div class="form-group">
+								<button class="btn btn-info" type="submit" style="width: '45%'; color: 'white'" (click)="logout()">
+									Logout
+								</button>
+								<button class="btn btn-outline-danger" type="submit" style="width: '45%'; margin-left: '10%'" (click)="delProf()">
+									Delete Profile
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+				
+				<ng-template #otherUser>
+					<div class="row" style="margin-left: 0; margin-right: 0">
+						<div class="col">
+							<img class="{{profPic ? 'rounded-circle' : 'rounded' + ' img-fluid'}}" src="{{profPic || '../assets/noImage.png'}}" />
+						</div>
+
+						<div class="col" style="margin-left: '10%'">
+							<p style="font-weight: 'bolder'; font-size: 55">{{name}}</p>
+							<p style="color: 'gray'; font-size: 22; margin-top: '10%'">{{username}}</p>
+							<p style="color: 'gray'; font-size: 22">{{email}}</p>
+							<p style="color: 'gray'; font-size: 22">{{mobile || ''}}</p>
+						</div>
+					</div>
+				</ng-template>
+			</div>
+		</div>
+	</div>
+</div>

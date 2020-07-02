@@ -20,8 +20,8 @@ export class ForgotComponent {
 
 	changePassObserver: Subscription;
 
-	handleSubmit(e:Event) {
-		e.preventDefault();
+	handleSubmit(/*e:Event*/) {
+		// e.preventDefault();
 		let {
 			regex: { isValidEmail, isValidPassword },
 			toast: { warn, err, success },

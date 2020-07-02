@@ -1,1 +1,54 @@
-<p>register works!</p>
+<div class="row" style="margin-left: 0; margin-right: 0">
+	<div class="col-md-4 offset-md-4 col-lg-4 offset-lg-4 col-xs-12">
+		<div class="card" style="margin-top: 5%">
+			<div class="card-header">
+				<h3 class="card-title" style="text-align: center; font-weight: bold">Create Account</h3>
+			</div>
+			<div class="card-body">
+				<form class="form" (ngSubmit)="handleSubmit()">
+					<div class="form-group">
+						<img class="{{profPic ? 'rounded-circle' : 'rounded' + ' img-fluid'}}" style="margin-left: '25%'; width: '50%'; height: 150; cursor: 'pointer'" (click)="imgInputRef.click()" src="{{profPic || '../../assets/defImg.png'}}" />
+						<input class="form-control" (change)="handleFile($event)" type="file" style="display: 'none'" #imgInputRef />
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" [(ngModel)]="name" name="name" type="text" placeholder="Name" />
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" [(ngModel)]="email" name="email" type="email" placeholder="E-mail Address" />
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" [(ngModel)]="mobile" name="mobile" type="text" placeholder="Contact Number" />
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" [(ngModel)]="username" name="username" type="text" placeholder="Username" />
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" [(ngModel)]="password" name="password" type="password" placeholder="Password" />
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" [(ngModel)]="confPass" name="confPass" type="password" placeholder="Confirm Password" />
+					</div>
+
+					<div class="form-group">
+						<button class="btn btn-primary" type="submit" style="width: '100%'">
+							Sign Up
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<small>
+					<div class="nav-item">
+						Already have an Account? <a class="nav-link" style="display: 'initial'; padding: 0" routerLink="/login">Login</a>
+					</div>
+				</small>
+			</div>
+		</div>
+	</div>
+</div>

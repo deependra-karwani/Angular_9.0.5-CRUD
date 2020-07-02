@@ -1,1 +1,15 @@
-<p>users works!</p>
+<div class="row" style="margin-left: 0; margin-right: 0; padding-left: 10%; padding-right: 10%; padding-top: 5%">
+	<div *ngFor="let user of users" class="col-md-6 col-lg-6 col-xs-12" style="margin-bottom: 15">
+		<div class="card" style="padding: 30; cursor: 'pointer'" (onClick)="navigateDetails(user.id)">
+			<div class="row" style="margin-left: 0; margin-right: 0">
+				<div class="col-md-4 col-xs-4 col-lg-4">
+					<img class="img-circle img-responsive" fluid roundedCircle src="{{user.profpic || '../assets/noImage.png'}}" />
+				</div>
+				<div class="col-md-8 col-xs-8 col-lg-8">
+					<p style="font-weight: 'bold'; font-size: 18">{{user.username}}</p>
+					<p style="color: 'gray'; font-size: 16">{{user.name}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

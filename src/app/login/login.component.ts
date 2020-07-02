@@ -20,8 +20,8 @@ export class LoginComponent implements OnDestroy {
 
 	loginObserver: Subscription;
 
-	handleSubmit(e:Event) {
-		e.preventDefault();
+	handleSubmit(/*e:Event*/) {
+		// e.preventDefault();
 		let {
 			regex: { isValidUsername, isValidPassword },
 			toast: { warn, err, success },

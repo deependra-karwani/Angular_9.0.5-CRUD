@@ -1,1 +1,27 @@
-<router-outlet></router-outlet>
+<div class="container-fluid">
+	<div *ngIf="flag.loading" class="modal" style="display: 'initial';">
+		<div class="modal-dialog modal-dialog-centered modal-sm" style="background-color: transparent; border: none; justify-content: center">
+			<div class="spinner-border"></div>
+		</div>
+	</div>
+	<div class="bg-dark navbar-dark navbar-expand-lg">
+		<div *ngIf="local.getSession(); else outNav">
+			<div class="navbar-collapse">
+				<div class="navbar-nav mr-auto">
+					<a class="nav-link" routerLink="/users">Users</a>
+					<a class="nav-link" routerLink="{{'/details/'+local.getUId()}}">Profile</a>
+				</div>
+			</div>
+		</div>
+		<ng-template #outNav>
+			<div class="navbar-collapse">
+				<div class="navbar-nav mr-auto">
+					<a class="nav-link" routerLink="/login">Login</a>
+					<a class="nav-link" routerLink="/register">Register</a>
+					<a class="nav-link" routerLink="/forgot">Forgot Password</a>
+				</div>
+			</div>
+		</ng-template>
+	</div>
+	<router-outlet></router-outlet>	
+</div>

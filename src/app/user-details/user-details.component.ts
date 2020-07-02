@@ -22,6 +22,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 	mobile;
 	profPic;
 	profPicChanged;
+	isUser;
 
 	getDetailsObserver: Subscription;
 	updProfObserver: Subscription;
@@ -31,6 +32,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.ar.params.subscribe( (params) => {
 			this.id = params.id;
+			this.isUser = this.id === this.http.getUId();
 
 			let req = new HttpParams();
 			req = req.append('userid', this.id);
@@ -48,8 +50,8 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	handleSubmit(e: Event) {
-		e.preventDefault();
+	handleSubmit(/*e: Event*/) {
+		// e.preventDefault();
 
 		let {
 			regex: { isValidName, isValidMobile, isValidUsername },
