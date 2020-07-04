@@ -15,8 +15,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnDestroy {
 	constructor(private toast: ToastService, private regex: RegExService, private http: HttpService, private flag: FlagService, private r: Router) {}
 
-	username;
-	password;
+	username = '';
+	password = '';
 
 	loginObserver: Subscription;
 
@@ -25,7 +25,7 @@ export class LoginComponent implements OnDestroy {
 		let {
 			regex: { isValidUsername, isValidPassword },
 			toast: { warn, err, success },
-			http: { loginReq, persistLogin },
+			http: { persistLogin },
 			flag: { startLoading, stopLoading },
 			username, password,
 			r: { navigate }
@@ -42,7 +42,7 @@ export class LoginComponent implements OnDestroy {
 		}
 		
 		startLoading();
-		this.loginObserver = loginReq({username, password})
+		this.loginObserver = this.http.loginReq({username, password})
 		.subscribe( (data) => {
 			let { message, userid } = data.body;
 			persistLogin(userid, data.headers['token']);

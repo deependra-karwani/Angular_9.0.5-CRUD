@@ -55,7 +55,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 
 		let {
 			regex: { isValidName, isValidMobile, isValidUsername },
-			http: { updateProfileReq, getUId },
+			http: { getUId },
 			flag: { startLoading, stopLoading },
 			toast: { warn, err, success },
 			name, username, mobile, profPic, profPicChanged
@@ -88,7 +88,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 		if(profPicChanged) {
 			formData.append('prof', profPic);
 		}
-		this.updProfObserver = updateProfileReq(formData)
+		this.updProfObserver = this.http.updateProfileReq(formData)
 		.subscribe( (data) => {
 			success(data.message || "Profile Updated Successfully");
 		}, (error) => {
@@ -100,7 +100,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 
 	logout() {
 		let {
-			http: { getUId, logoutReq, getSession, persistLogout },
+			http: { getUId, getSession, persistLogout },
 			flag: { startLoading, stopLoading },
 			toast: { err, success },
 			r: { navigate }
@@ -109,7 +109,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 		if(this.id === getUId() && window.confirm("Are you sure you want to logout?")) {
 			startLoading();
 
-			this.logoutObserver = logoutReq(getSession())
+			this.logoutObserver = this.http.logoutReq(getSession())
 			.subscribe( (data) => {
 				success(data.message || "Logout Successful");
 				persistLogout();
@@ -124,7 +124,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 
 	delProf() {
 		let {
-			http: { getUId, deleteAccountReq, persistLogout },
+			http: { getUId, persistLogout },
 			flag: { startLoading, stopLoading },
 			toast: { err, success },
 			r: { navigate }
@@ -133,7 +133,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 		if(this.id === getUId() && window.confirm("Are you sure you want to logout?")) {
 			startLoading();
 
-			this.delProfObserver = deleteAccountReq({userid: this.id})
+			this.delProfObserver = this.http.deleteAccountReq({userid: this.id})
 			.subscribe( (data) => {
 				success(data.message || "Profile Deleted Successfully");
 				persistLogout();

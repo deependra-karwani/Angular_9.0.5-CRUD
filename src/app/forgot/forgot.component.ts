@@ -14,9 +14,9 @@ import { FlagService } from '../flag.service';
 export class ForgotComponent {
 	constructor(private toast: ToastService, private regex: RegExService, private http: HttpService, private flag: FlagService) {}
 
-	email;
-	password;
-	confPass;
+	email = '';
+	password = '';
+	confPass = '';
 
 	changePassObserver: Subscription;
 
@@ -25,7 +25,6 @@ export class ForgotComponent {
 		let {
 			regex: { isValidEmail, isValidPassword },
 			toast: { warn, err, success },
-			http: { forgotPasswordReq },
 			flag: { startLoading, stopLoading },
 			email, password, confPass
 		} = this;
@@ -47,7 +46,7 @@ export class ForgotComponent {
 		
 		startLoading();
 
-		this.changePassObserver = forgotPasswordReq({email, password})
+		this.changePassObserver = this.http.forgotPasswordReq({email, password})
 		.subscribe( (data) => {
 			let { message } = data;
 			success(message || "Password Changed Successfully");

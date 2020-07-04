@@ -15,25 +15,25 @@ const defaultOps = {
 export class ToastService {
 	constructor(private toast: ToastrService) {}
 
-	info(message) {
+	info = (message) => {
 		this.toast.info('', message, {
 			...defaultOps
 		});
 	}
 
-	success(message) {
+	success = (message) => {
 		this.toast.success('', message, {
 			...defaultOps
 		});
 	}
 
-	warn(message) {
+	warn = (message) => {
 		this.toast.warning('', message, {
 			...defaultOps
 		});
 	}
 
-	err(message) {
+	err = (message) => {
 		this.toast.error('', message, {
 			...defaultOps
 		});

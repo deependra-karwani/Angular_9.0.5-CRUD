@@ -20,13 +20,13 @@ export class UsersComponent implements OnDestroy {
 	ngOnInit(): void {
 		let {
 			toast: { err, warn },
-			http: { getAllUsersReq, getUId }
+			http: { getUId }
 		} = this;
 
 		let params = new HttpParams();
 		params = params.append('userid', getUId());
 
-		this.getAllObserver = getAllUsersReq(params)
+		this.getAllObserver = this.http.getAllUsersReq(params)
 		.subscribe( (data) => {
 			data.message ?
 				warn(data.message)

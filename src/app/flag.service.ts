@@ -8,11 +8,11 @@ export class FlagService {
 
 	loading = false;
 
-	startLoading() {
+	startLoading = () => {
 		this.loading = true;
 	}
 
-	stopLoading() {
+	stopLoading = () => {
 		this.loading = false;
 	}
 }

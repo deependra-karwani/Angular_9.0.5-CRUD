@@ -15,14 +15,14 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnDestroy {
 	constructor(private toast: ToastService, private regex: RegExService, private http: HttpService, private flag: FlagService, private r: Router) {}
 
-	name;
-	username;
-	email;
-	mobile;
-	password;
-	confPass;
+	name = '';
+	username = '';
+	email = '';
+	mobile = '';
+	password = '';
+	confPass = '';
 	profPic;
-	profPicChanged;
+	profPicChanged = false;
 
 	registerObserver: Subscription;
 
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnDestroy {
 		let {
 			regex: { isValidName, isValidUsername, isValidEmail, isValidMobile, isValidPassword },
 			toast: { warn, err, success },
-			http: { registerReq, persistLogin },
+			http: { persistLogin },
 			flag: { startLoading, stopLoading },
 			name, username, email, mobile, password, confPass, profPic, profPicChanged,
 			r: { navigate }
@@ -78,7 +78,7 @@ export class RegisterComponent implements OnDestroy {
 		if(profPicChanged) {
 			formData.append('prof', profPic);
 		}
-		this.registerObserver = registerReq(formData)
+		this.registerObserver = this.http.registerReq(formData)
 		.subscribe( (data) => {
 			let { message, userid } = data.body;
 			persistLogin(userid, data.headers['token']);

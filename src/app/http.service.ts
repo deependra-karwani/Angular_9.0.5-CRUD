@@ -12,80 +12,80 @@ export class HttpService {
 	constructor(private http:HttpClient) {}
 
 	/** Session Management */
-	setUId(userid) {
+	setUId = (userid) => {
 		localStorage.setItem('userid', userid);
 	}
 
-	getUId() {
+	getUId = () => {
 		return localStorage.getItem('userid');
 	}
 
-	rmUId() {
+	rmUId = () => {
 		localStorage.removeItem('userid');
 	}
 
-	saveSession(token) {
+	saveSession = (token) => {
 		localStorage.setItem('unsafe', token);
 	}
 
-	getSession() {
+	getSession = () => {
 		return localStorage.getItem('unsafe');
 	}
 
-	rmSession() {
+	rmSession = () => {
 		localStorage.removeItem('unsafe');
 	}
 
-	persistLogin(userid, token) {
+	persistLogin = (userid, token) => {
 		localStorage.setItem('userid', userid);
 		localStorage.setItem('unsafe', token);
 	}
 	
-	persistLogout() {
+	persistLogout = () => {
 		localStorage.removeItem('userid');
 		localStorage.removeItem('unsafe');
 	}
 
-	isLoggedIn() {
+	isLoggedIn = () => {
 		return Boolean(this.getSession());
 	}
 	/** ~Session Management */
 
-	registerReq(formData) {
+	registerReq = (formData) => {
 		return this.http.post<any>(this.baseUrl+"register", formData, {observe: 'response'});
 	}
 
-	loginReq(data) {
+	loginReq = (data) => {
 		return this.http.put<any>(this.baseUrl+"login", data, {observe: 'response'});
 	}
 
-	forgotPasswordReq(data) {
+	forgotPasswordReq = (data) => {
 		return this.http.put<any>(this.baseUrl+"forgot", data);
 	}
 
-	logoutReq(token) {
+	logoutReq = (token) => {
 		const headers = new HttpHeaders({token});
 		return this.http.get<any>(this.baseUrl+"logout", {headers})
 	}
 
-	getAllUsersReq(params) {
+	getAllUsersReq = (params) => {
 		return this.http.get<any>(this.baseUrl+"getAll", {params});
 	}
 
-	getUserDetailsReq(params) {
+	getUserDetailsReq = (params) => {
 		return this.http.get<any>(this.baseUrl+"getDetails", {params});
 	}
 
-	updateProfileReq(formData) {
+	updateProfileReq = (formData) => {
 		return this.http.put<any>(this.baseUrl+"updProf", formData);
 	}
 
-	deleteAccountReq(data) {
+	deleteAccountReq = (data) => {
 		return this.http.request<any>('delete', this.baseUrl+"delAcc", {body: data});
 		// return this.http.delete(this.baseUrl+"delAcc", {body: data});
 	}
 
-	refreshTokenReq(token) {
+	refreshTokenReq = (token) => {
 		const headers = new HttpHeaders({token});
 		return this.http.get<any>(this.baseUrl+"refresh", {headers});
 	}
